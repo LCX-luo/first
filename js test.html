@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+        h1 {
+            display: inline-block;
+
+            margin-right: 20px;
+        }
+
+        .header-wrapper {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+            justify-content: space-between;
+            /* 两端对齐 */
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .horizontal-list {
+            display: inline-block;
+            /* 使列表变为行内块元素 */
+            list-style: none;
+            /* 移除默认列表样式 */
+            padding: 0;
+            /* 移除默认内边距 */
+            margin: 0;
+            /* 移除默认外边距 */
+
+        }
+
+        .horizontal-list li {
+            display: inline-block;
+            /* 让列表项横向排列 */
+            margin-left: 4px;
+            /* 可选：给两个图标加间距，避免挤在一起 */
+            vertical-align: middle;
+        }
+
+        .backgroundchange {
+            padding: 7.5px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .backgroundchange:hover {
+            background-color: #e5e5e5;
+        }
+
+        .round {
+            border-radius: 16px;
+        }
+
+        /**/
+        /* 容器样式：控制整体布局 */
+        .container {
+            width: 200px;
+            margin: 50px;
+        }
+
+        /* 按钮样式：包含“新建”文字和箭头 */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        /* 箭头样式：初始向下，旋转由 JS 控制 */
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        /* 下拉菜单样式：默认隐藏，绝对定位避免影响布局 */
+        .dropdown {
+            display: none;
+            position: absolute;
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 菜单项样式： hover 时背景变灰 */
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+        <div class="container">
+        <!-- 按钮区域：包含“新建”和箭头 -->
+        <div class="btn" id="btn">
+            <span>新建</span>
+            
+            <svg class="arrow" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="DownBoldOutlined"><path d="m3.414 7.086-.707.707a1 1 0 0 0 0 1.414l7.778 7.778a2 2 0 0 0 2.829 0l7.778-7.778a1 1 0 0 0 0-1.414l-.707-.707a1 1 0 0 0-1.415 0l-7.07 7.07-7.072-7.07a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
+            
+        </div>
+        <!-- 下拉菜单区域：包含多个菜单项 -->
+        <div class="dropdown" id="dropdown">
+            <div class="dropdown-item">文档</div>
+            <div class="dropdown-item">表格</div>
+            <div class="dropdown-item">幻灯片</div>
+            <div class="dropdown-item">多维表格</div>
+            <div class="dropdown-item">问卷</div>
+            <div class="dropdown-item">思维笔记</div>
+            <div class="dropdown-item">更多类型</div>
+            <div class="dropdown-item">文件夹</div>
+            <div class="dropdown-item">画板</div>
+            <div class="dropdown-item">思维导图</div>
+            <div class="dropdown-item">流程图</div>
+        </div>
+    </div>
+
+    <script>
+        // 获取 DOM 元素
+        const btn = document.getElementById('btn');
+        const dropdown = document.getElementById('dropdown');
+        const arrow = document.querySelector('.arrow');
+
+        // 鼠标悬浮在“新建”按钮上：显示下拉菜单 + 箭头旋转
+        btn.addEventListener('mouseenter', () => {
+            dropdown.style.display = 'block';
+            arrow.style.transform = 'rotate(180deg)'; // 箭头向上
+            arrow.textContent = '▲'; // 也可替换成向上的图标
+        });
+
+        // 鼠标离开“新建”按钮 + 离开下拉菜单：隐藏下拉菜单 + 箭头恢复
+        btn.addEventListener('mouseleave', (e) => {
+            // 若鼠标离开时，没进入下拉菜单，则隐藏
+            if (!dropdown.contains(e.relatedTarget)) {
+                dropdown.style.display = 'none';
+                arrow.style.transform = 'rotate(0)'; // 箭头向下
+                arrow.textContent = '▼';
+            }
+        });
+
+        // 鼠标离开下拉菜单时：若没回到“新建”按钮，隐藏菜单 + 箭头恢复
+        dropdown.addEventListener('mouseleave', (e) => {
+            if (!btn.contains(e.relatedTarget)) {
+                dropdown.style.display = 'none';
+                arrow.style.transform = 'rotate(0)';
+                arrow.textContent = '▼';
+            }
+        });
+    </script>
+</body>
+</html>
