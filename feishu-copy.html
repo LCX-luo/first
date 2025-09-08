@@ -30,15 +30,6 @@
             padding: 0;
         }
 
-        .horizontal-list {
-            list-style: none;
-            /* 移除默认列表样式 */
-            padding: 0;
-            /* 移除默认内边距 */
-            margin: 0;
-            /* 移除默认外边距 */
-        }
-
         .horizontal-list li {
             display: inline-block;
             /* 让列表项横向排列 */
@@ -91,6 +82,11 @@
             transition: transform 0.3s ease;
         }
 
+        .more{
+            margin-left: 60px;
+            transform: rotate(270deg);
+        }
+
         /* 下拉菜单样式：默认隐藏，绝对定位避免影响布局 */
         .dropdown {
             display: none;
@@ -105,17 +101,18 @@
             background-color: #fff;
             border: 1px solid #eee;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+             
         }
 
 
-        /* 菜单项样式： hover 时背景变灰 */
+
         .dropdown-item {
             padding: 10px;
-            cursor: pointer;
+            cursor: pointer
         }
 
         .dropdown-item:hover {
-            background-color: #eee;
+            background-color: #e5e5e5;
         }
 
         .buttontitle {
@@ -125,6 +122,22 @@
         .buttontext {
             font-size: 12px;
             color: gray;
+        }
+
+        /* 按钮容器 hover 时背景变灰 */
+        .btn-container {
+            /* 可选：添加内边距，让背景区域更协调（与图标 hover 区域匹配） */
+            padding: 5px;
+            border-radius: 8px;
+            /* 圆角，与按钮风格统一 */
+            transition: background-color 0.2s ease;
+            /* 过渡动画，hover 更流畅 */
+        }
+
+        /* 鼠标悬停时触发 */
+        .btn-container:hover {
+            background-color: #e5e5e5;
+            /* 与顶部图标 hover 灰度过渡一致 */
         }
     </style>
 </head>
@@ -174,9 +187,9 @@
         </ul>
     </div>
     <ul>
-        <li class="container">
+        <li class="container ">
             <!-- 按钮区域：包含“新建”和箭头 -->
-            <div class="btn" id="btn">
+            <div class="btn dropdown-btn btn-container" id="btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path
                         d="M2.5 2a1 1 0 00-1 1v15.06c0 1.3.54 2.57 1.5 3.5A5.24 5.24 0 006.64 23h6.07a8 8 0 017.8-13.6V6.94c-.01-1.3-.55-2.57-1.51-3.5A5.24 5.24 0 0015.36 2H2.5z"
@@ -197,7 +210,7 @@
                         fill="currentColor"></path>
                 </svg>
                 <!-- 下拉菜单区域：包含多个菜单项 -->
-                <div class="dropdown" id="dropdown">
+                <div class="dropdown dropdown-menu" id="dropdown">
                     <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg" data-icon="FileDocxColorful">
                             <path
@@ -269,7 +282,14 @@
                             <path
                                 d="M6.5 7.5a1 1 0 0 1 1-1H10a1 1 0 0 1 1 1V10a1 1 0 0 1-1 1H7.5a1 1 0 0 1-1-1V7.5Zm0 6.5a1 1 0 0 1 1-1H10a1 1 0 0 1 1 1v2.5a1 1 0 0 1-1 1H7.5a1 1 0 0 1-1-1V14ZM13 7.5a1 1 0 0 1 1-1h2.5a1 1 0 0 1 1 1V10a1 1 0 0 1-1 1H14a1 1 0 0 1-1-1V7.5Zm0 6.5a1 1 0 0 1 1-1h2.5a1 1 0 0 1 1 1v2.5a1 1 0 0 1-1 1H14a1 1 0 0 1-1-1V14Z"
                                 fill="#fff"></path>
-                        </svg> 更多类型</div>
+                        </svg> 更多类型
+                        <svg class="arrow more" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" data-icon="DownBoldOutlined">
+                            <path
+                                d="m3.414 7.086-.707.707a1 1 0 0 0 0 1.414l7.778 7.778a2 2 0 0 0 2.829 0l7.778-7.778a1 1 0 0 0 0-1.414l-.707-.707a1 1 0 0 0-1.415 0l-7.07 7.07-7.072-7.07a1 1 0 0 0-1.414 0Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
                     <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg" data-icon="FileFolderColorful">
                             <path d="M1 6h22v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6Z" fill="#FFC60A"></path>
@@ -279,6 +299,7 @@
                                 2V6H1V4Z"
                                 fill="#FF9D4C"></path>
                         </svg> 文件夹</div>
+                    <div class="dropdown-item" style="font-size: 14px; color:gray">文档应用</div>
                     <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg" data-icon="VcWhiteboardOutlined">
                             <path
@@ -301,7 +322,7 @@
                 </div>
         </li>
         <li class="container">
-            <div class="btn " id="btn2">
+            <div class="btn dropdown-btn btn-container" id="btn2">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <circle cx="18" cy="17" r="6" fill="#ED6D0C"></circle>
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -320,112 +341,60 @@
                         d="m3.414 7.086-.707.707a1 1 0 0 0 0 1.414l7.778 7.778a2 2 0 0 0 2.829 0l7.778-7.778a1 1 0 0 0 0-1.414l-.707-.707a1 1 0 0 0-1.415 0l-7.07 7.07-7.072-7.07a1 1 0 0 0-1.414 0Z"
                         fill="currentColor"></path>
                 </svg>
-                <div class="dropdown" id="dropdown">
+                <div class="dropdown dropdown-menu" id="dropdown2">
                     <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="FileDocxColorful">
+                            xmlns="http://www.w3.org/2000/svg" data-icon="Uploadfile2Colorful">
                             <path
-                                d="M2.5 2.5a1 1 0 0 1 1-1h12.865a5.24 5.24 0 0 1 3.631 1.447A4.848 4.848 0 0 1 21.5 6.441V21.5a1 1 0 0 1-1 1H7.635a5.24 5.24 0 0 1-3.63-1.447A4.849 4.849 0 0 1 2.5 17.559V2.5Z"
-                                fill="#336DF4"></path>
-                            <path
-                                d="M7 8.7a.7.7 0 0 1 .7-.7h8.6a.7.7 0 1 1 0 1.4H7.7a.7.7 0 0 1-.7-.7Zm0 3.4a.7.7 0 0 1 .7-.7h8.6a.7.7 0 1 1 0 1.4H7.7a.7.7 0 0 1-.7-.7Zm0 3.4a.7.7 0 0 1 .7-.7h4.6a.7.7 0 1 1 0 1.4H7.7a.7.7 0 0 1-.7-.7Z"
-                                fill="#fff"></path>
-                        </svg> 文档</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="FileSheetColorful">
-                            <path
-                                d="M2.5 2.5a1 1 0 0 1 1-1h12.865a5.24 5.24 0 0 1 3.631 1.447A4.848 4.848 0 0 1 21.5 6.441V21.5a1 1 0 0 1-1 1H7.635a5.24 5.24 0 0 1-3.63-1.447A4.849 4.849 0 0 1 2.5 17.559V2.5Z"
-                                fill="#35BD4B"></path>
-                            <path
-                                d="M6.75 6.75h8.114a2.386 2.386 0 0 1 2.386 2.386v8.114H9.136a2.386 2.386 0 0 1-2.386-2.386V6.75Zm5.927 1.432v3.102h3.141V9.136a.955.955 0 0 0-.954-.954h-2.187Zm-1.432 0H8.182v3.102h3.063V8.182Zm-3.063 4.534v2.148c0 .527.427.954.954.954h2.109v-3.102H8.182Zm4.495 3.102h3.141v-3.102h-3.141v3.102Z"
-                                fill="#fff"></path>
-                        </svg> 表格</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="WikiSlidesColorful">
-                            <path
-                                d="M2.5 2.498c0-.552.446-.998.998-.998h12.865c1.365 0 2.669.516 3.632 1.444A4.86 4.86 0 0 1 21.5 6.437v15.065a.997.997 0 0 1-.998.998H7.637a5.227 5.227 0 0 1-3.632-1.444A4.861 4.861 0 0 1 2.5 17.563V2.498Z"
-                                fill="#ED6D0C"></path>
-                            <path
-                                d="M11.88 12.28h4.278l-.009-.01h1.05c.254 0 .464.22.438.473a5.24 5.24 0 0 1-.184.928 5.767 5.767 0 0 1-6.606 4.05c-2.31-.42-4.165-2.292-4.576-4.601a5.755 5.755 0 0 1 4.217-6.615c.307-.079.613-.14.937-.167a.432.432 0 0 1 .455.438v5.504Zm-4.095.778a4.22 4.22 0 0 0 3.263 3.273l.01.008c2.178.447 4.129-.805 4.829-2.66h-4.961a.439.439 0 0 1-.438-.437V8.22c-1.872.682-3.15 2.642-2.703 4.838Z"
-                                fill="#fff"></path>
-                            <path
-                                d="M14.093 6.417a6.272 6.272 0 0 1 3.509 3.666.441.441 0 0 1-.411.595h-3.71V6.82a.44.44 0 0 1 .612-.403Z"
-                                fill="#fff"></path>
-                        </svg>幻灯片</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="FileBitableColorful">
-                            <path
-                                d="M2.5 2.5a1 1 0 0 1 1-1h12.865a5.24 5.24 0 0 1 3.631 1.447A4.848 4.848 0 0 1 21.5 6.441V21.5a1 1 0 0 1-1 1H7.635a5.24 5.24 0 0 1-3.63-1.447A4.849 4.849 0 0 1 2.5 17.559V2.5Z"
-                                fill="#8046F3"></path>
-                            <path
-                                d="M12 8.26 15.74 12 12 15.735 8.26 12 12 8.26ZM8.26 12 6.5 14.275 9.725 17.5 12 15.735l2.275 1.765 3.225-3.225L15.74 12l1.76-2.275L14.275 6.5 12 8.26 9.725 6.5 6.5 9.725 8.26 12Z"
-                                fill="#fff"></path>
-                        </svg> 多维表格</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="FileFormColorful">
-                            <path
-                                d="M2.5 2a.5.5 0 0 1 .5-.5h13.365a5.24 5.24 0 0 1 3.631 1.447A4.848 4.848 0 0 1 21.5 6.441V22a.5.5 0 0 1-.5.5H7.635a5.24 5.24 0 0 1-3.63-1.447A4.849 4.849 0 0 1 2.5 17.559V2Z"
-                                fill="#FFC60A"></path>
-                            <path
-                                d="M14.864 6.75a2.386 2.386 0 0 1 2.386 2.386v1.114a.75.75 0 0 1-1.5 0V9.148a.955.955 0 0 0-.954-.955H8.114v6.682c0 .527.427.955.954.955h.722a.71.71 0 0 1 0 1.42h-.654a2.386 2.386 0 0 1-2.386-2.386V7A.25.25 0 0 1 7 6.75h7.864Z"
-                                fill="#fff"></path>
-                            <path
-                                d="M9.75 11a.75.75 0 0 1 .75-.75h2.75a.75.75 0 0 1 0 1.5H10.5a.75.75 0 0 1-.75-.75Zm7.437 1.444a.75.75 0 0 1 0 1.061l-3.359 3.359a.5.5 0 0 1-.707 0l-1.59-1.591a.75.75 0 0 1 1.06-1.06l.884.883 2.652-2.652a.75.75 0 0 1 1.06 0Z"
-                                fill="#fff"></path>
-                        </svg> 问卷</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="FileMindnoteColorful">
-                            <path
-                                d="M2.5 2.5a1 1 0 0 1 1-1h12.865a5.24 5.24 0 0 1 3.631 1.447A4.848 4.848 0 0 1 21.5 6.441V21.5a1 1 0 0 1-1 1H7.635a5.24 5.24 0 0 1-3.63-1.447A4.849 4.849 0 0 1 2.5 17.559V2.5Z"
-                                fill="#25B0E7"></path>
-                            <path
-                                d="M12.49 15.568a2.3 2.3 0 0 1-1.993-1.153l-1.598-2.78a.7.7 0 0 0-.607-.35H6.8a.7.7 0 1 0 0 1.4h1.087l1.396 2.428a3.7 3.7 0 0 0 3.208 1.855h3.764a.7.7 0 1 0 0-1.4H12.49Z"
-                                fill="#fff"></path>
-                            <path
-                                d="M12.49 8.4a2.3 2.3 0 0 0-1.993 1.153l-1.598 2.78a.7.7 0 0 1-.607.35l-1.492.001a.7.7 0 1 1 0-1.4h1.087l1.396-2.429A3.7 3.7 0 0 1 12.491 7h3.764a.7.7 0 1 1 0 1.4H12.49Zm-.537 3.584a.7.7 0 0 1 .7-.7h3.6a.7.7 0 1 1 0 1.4h-3.6a.7.7 0 0 1-.7-.7Z"
-                                fill="#fff"></path>
-                        </svg> 思维笔记</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="CcmAppColorful">
-                            <path
-                                d="M1.5 9.5c0-3.771 0-5.657 1.172-6.828C3.843 1.5 5.729 1.5 9.5 1.5h5c3.771 0 5.657 0 6.828 1.172C22.5 3.843 22.5 5.729 22.5 9.5v5c0 3.771 0 5.657-1.172 6.828C20.157 22.5 18.271 22.5 14.5 22.5h-5c-3.771 0-5.657 0-6.828-1.172C1.5 20.157 1.5 18.271 1.5 14.5v-5Z"
-                                fill="#10A893"></path>
-                            <path
-                                d="M6.5 7.5a1 1 0 0 1 1-1H10a1 1 0 0 1 1 1V10a1 1 0 0 1-1 1H7.5a1 1 0 0 1-1-1V7.5Zm0 6.5a1 1 0 0 1 1-1H10a1 1 0 0 1 1 1v2.5a1 1 0 0 1-1 1H7.5a1 1 0 0 1-1-1V14ZM13 7.5a1 1 0 0 1 1-1h2.5a1 1 0 0 1 1 1V10a1 1 0 0 1-1 1H14a1 1 0 0 1-1-1V7.5Zm0 6.5a1 1 0 0 1 1-1h2.5a1 1 0 0 1 1 1v2.5a1 1 0 0 1-1 1H14a1 1 0 0 1-1-1V14Z"
-                                fill="#fff"></path>
-                        </svg> 更多类型</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="FileFolderColorful">
-                            <path d="M1 6h22v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6Z" fill="#FFC60A"></path>
-                            <path>
-                                d="M1 4a2 2 0 0 1 2-2h5.275a4 4 0 0 1 1.404.255l2.642.99a4 4 0 0 0 1.404.255H21a2 2 0 0
-                                1 2
-                                2V6H1V4Z"
+                                d="M3 3a2 2 0 0 1 2-2h9.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V21a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3Z"
                                 fill="#FF9D4C"></path>
-                        </svg> 文件夹</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="VcWhiteboardOutlined">
                             <path
-                                d="M13.728 18.56h1.914c.376 0 .736-.146 1.002-.406l5.601-5.48a2.357 2.357 0 0 0 0-3.379 2.472 2.472 0 0 0-3.447 0l-5.6 5.48c-.265.26-.415.614-.415.982v1.877c0 .512.423.926.945.926Zm-4.612-.35c.043.471-.094.959-.27 1.4a3.27 3.27 0 0 0-.026.068c.196-.028.438-.082.715-.165a9.1 9.1 0 0 0 1.183-.456 1.184 1.184 0 0 1 1.565.544 1.14 1.14 0 0 1-.555 1.534c-.808.377-2.13.875-3.21.865-.53-.005-1.393-.142-1.87-.93-.316-.522-.318-1.105-.194-1.649-1.014.504-2.183 1.31-2.549 1.586a1.19 1.19 0 0 1-1.646-.209 1.136 1.136 0 0 1 .214-1.613c.455-.344 1.986-1.407 3.294-1.994.332-.149.69-.286 1.04-.367.31-.073.8-.147 1.285.03a1.55 1.55 0 0 1 1.024 1.356ZM2 5.513a3.374 3.374 0 0 1 3.374-3.375h14.087a3.374 3.374 0 0 1 3.374 3.375v.294a1 1 0 1 1-2 0v-.294c0-.76-.615-1.375-1.374-1.375H5.374C4.615 4.138 4 4.754 4 5.513V15.5a1 1 0 1 1-2 0V5.513Z"
-                                fill="currentColor"></path>
-                        </svg> 画板</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="MindmapOutlined">
+                                d="M15 1.483a.2.2 0 0 1 .341-.142L20.66 6.66a.2.2 0 0 1-.142.341H17a2 2 0 0 1-2-2V1.483Z"
+                                fill="#FF811A"></path>
                             <path
-                                d="M3 8a5 5 0 0 1 5-5 1 1 0 0 1 0 2 3 3 0 0 0-3 3v3h3a1 1 0 1 1 0 2H5v3a3 3 0 0 0 3 3 1 1 0 1 1 0 2 5 5 0 0 1-5-5v-3H1.5a1 1 0 1 1 0-2H3V8Zm9.5-5a1 1 0 1 0 0 2H22a1 1 0 1 0 0-2h-9.5Zm-1 9a1 1 0 0 1 1-1H22a1 1 0 1 1 0 2h-9.5a1 1 0 0 1-1-1Zm1 7a1 1 0 1 0 0 2H22a1 1 0 1 0 0-2h-9.5Z"
-                                fill="currentColor"></path>
-                        </svg> 思维导图</div>
-                    <div class="dropdown-item"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" data-icon="DrawioOutlined">
+                                d="m11.239 10.178-1.7 1.806a.68.68 0 0 1-.962-.962 4268.273 4268.273 0 0 0 2.885-2.885.68.68 0 0 1 .96 0l2.15 2.15.739.739a.675.675 0 0 1-.009.953.675.675 0 0 1-.953.008l-1.75-1.81v4.419c0 .375-.305.528-.68.528-.376 0-.68-.153-.68-.528v-4.418Z"
+                                fill="#fff"></path>
                             <path
-                                d="M15.722 1.55a2 2 0 0 1 2.828 0l3.536 3.536a2 2 0 0 1 0 2.828L18.55 11.45a2 2 0 0 1-2.828 0l-3.536-3.536a2.003 2.003 0 0 1-.318-.414H7.5a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1H11v-1a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2v-1H7.5a3 3 0 0 1-3-3v-3.181H1.91a.91.91 0 1 1 0-1.819H4.5V8.5a3 3 0 0 1 3-3h4.368c.085-.148.192-.288.318-.414l3.536-3.536Zm1.414 1.414L13.601 6.5l3.535 3.536L20.672 6.5l-3.536-3.536ZM20 16h-7v4h7v-4Z"
-                                fill="currentColor"></path>
-                        </svg> 流程图</div>
-
+                                d="M17.036 15.755a.68.68 0 0 0-1.36 0v.68H8.16v-.68a.68.68 0 0 0-1.36 0v1.36c0 .375.305.68.68.68h8.877a.68.68 0 0 0 .68-.68v-1.36Z"
+                                fill="#fff"></path>
+                        </svg>文档
+                    </div>
+                    <div class="dropdown-item">
+                        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            data-icon="AttachmentColorful">
+                            <path d="M1 6h22v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6Z" fill="#FFC60A"></path>
+                            <path
+                                d="m11.239 10.239-1.7 1.806a.68.68 0 0 1-.962-.961l.737-.737c.716-.717 1.431-1.433 2.148-2.148a.68.68 0 0 1 .96 0l2.15 2.15.739.739a.675.675 0 0 1-.009.952.675.675 0 0 1-.953.009l-1.75-1.81v4.418c0 .376-.305.53-.68.53-.376 0-.68-.154-.68-.53V10.24Z"
+                                fill="#fff"></path>
+                            <path
+                                d="M17.036 15.816a.68.68 0 0 0-1.36 0v.68H8.16v-.68a.68.68 0 0 0-1.36 0v1.36c0 .376.305.68.68.68h8.877a.68.68 0 0 0 .68-.68v-1.36Z"
+                                fill="#fff"></path>
+                            <path
+                                d="M1 4a2 2 0 0 1 2-2h5.275a4 4 0 0 1 1.404.255l2.642.99a4 4 0 0 0 1.404.255H21a2 2 0 0 1 2 2V6H1V4Z"
+                                fill="#FF9D4C"></path>
+                        </svg>上传文件夹
+                    </div>
+                    <div class="dropdown-item">
+                        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            data-icon="UploadonlineColorful">
+                            <path
+                                d="M3 3a2 2 0 0 1 2-2h9.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V21a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3Z"
+                                fill="#5B65F5"></path>
+                            <path opacity="0.9"
+                                d="M15 1.483a.2.2 0 0 1 .341-.142L20.66 6.66a.2.2 0 0 1-.142.341H17a2 2 0 0 1-2-2V1.483Z"
+                                fill="#333DCC"></path>
+                            <path
+                                d="M7 9.635c0-1.155.937-2.092 2.092-2.092H14a.697.697 0 0 1 0 1.395H9.092a.697.697 0 0 0-.697.697v6.606c0 .385.312.697.697.697H14a.697.697 0 0 1 0 1.395H9.092A2.092 2.092 0 0 1 7 16.24V9.635Z"
+                                fill="#fff"></path>
+                            <path
+                                d="m12.19 12.276.736-.776a.697.697 0 0 0-.986-.986L9.862 12.48a.697.697 0 0 0 .03 1.014l2.107 1.76a.697.697 0 0 0 .927-1.043l-.737-.54H16.5a.697.697 0 0 0 0-1.395h-4.31Z"
+                                fill="#fff"></path>
+                        </svg>导入为在线文档
+                    </div>
                 </div>
             </div>
         </li>
         <li class="container">
-            <div class="btn" id="btn3">
+            <div class="btn dropdown-btn btn-container" id="btn3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M14 13.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" fill="#5B65F5"></path>
                     <path
@@ -438,13 +407,6 @@
                     <li class="buttontitle">模板库</li>
                     <li class="buttontext">选择模板库快速新建</li>
                 </ul>
-                <svg class="arrow" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" data-icon="DownBoldOutlined">
-                    <path
-                        d="m3.414 7.086-.707.707a1 1 0 0 0 0 1.414l7.778 7.778a2 2 0 0 0 2.829 0l7.778-7.778a1 1 0 0 0 0-1.414l-.707-.707a1 1 0 0 0-1.415 0l-7.07 7.07-7.072-7.07a1 1 0 0 0-1.414 0Z"
-                        fill="currentColor"></path>
-                </svg>
-
             </div>
         </li>
     </ul>
@@ -452,30 +414,40 @@
     </div>
 
     <script>
-        // 获取 DOM 元素
-        const btn = document.getElementById('btn');
-        const dropdown = document.getElementById('dropdown');
-        const arrow = document.querySelector('.arrow');
-        // 鼠标悬浮在“新建”按钮上：显示下拉菜单 + 箭头旋转
-        btn.addEventListener('mouseenter', () => {
-            dropdown.style.display = 'block';
-            arrow.style.transform = 'rotate(180deg)'; // 箭头向上
-        });
+        // 批量获取所有下拉按钮（包含“新建”“上传”“模板库”）
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
 
-        // 鼠标离开“新建”按钮 + 离开下拉菜单：隐藏下拉菜单 + 箭头恢复
-        btn.addEventListener('mouseleave', (e) => {
-            // 若鼠标离开时，没进入下拉菜单，则隐藏
-            if (!dropdown.contains(e.relatedTarget)) {
-                dropdown.style.display = 'none';
-                arrow.style.transform = 'rotate(0)'; // 箭头向下
-            }
-        });
+        // 循环遍历每个按钮，绑定事件
+        dropdownBtns.forEach(btn => {
+            // 1. 找到当前按钮内的“下拉菜单”和“箭头”（子元素关联，避免混淆）
+            const dropdown = btn.querySelector('.dropdown-menu'); // 每个按钮对应自己的菜单
+            const arrow = btn.querySelector('.arrow'); // 每个按钮对应自己的箭头
 
-        // 鼠标离开下拉菜单时：若没回到“新建”按钮，隐藏菜单 + 箭头恢复
-        dropdown.addEventListener('mouseleave', (e) => {
-            if (!btn.contains(e.relatedTarget)) {
-                dropdown.style.display = 'none';
-                arrow.style.transform = 'rotate(0)';
+            // 2. 鼠标悬浮在按钮上：显示菜单 + 箭头旋转
+            btn.addEventListener('mouseenter', () => {
+                if (dropdown) dropdown.style.display = 'block'; // 确保找到菜单再操作
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            });
+
+            // 3. 鼠标离开按钮：若没进入菜单，则隐藏菜单 + 箭头恢复
+            btn.addEventListener('mouseleave', (e) => {
+                if (!dropdown) return; // 没找到菜单则跳过
+                // 检查鼠标是否移到了当前按钮的下拉菜单上，若没有则隐藏
+                if (!dropdown.contains(e.relatedTarget)) {
+                    dropdown.style.display = 'none';
+                    if (arrow) arrow.style.transform = 'rotate(0)';
+                }
+            });
+
+            // 4. 鼠标离开菜单：若没回到当前按钮，则隐藏菜单 + 箭头恢复
+            if (dropdown) { // 确保存在菜单再绑定事件
+                dropdown.addEventListener('mouseleave', (e) => {
+                    // 检查鼠标是否移回了当前按钮，若没有则隐藏
+                    if (!btn.contains(e.relatedTarget)) {
+                        dropdown.style.display = 'none';
+                        if (arrow) arrow.style.transform = 'rotate(0)';
+                    }
+                });
             }
         });
     </script>
