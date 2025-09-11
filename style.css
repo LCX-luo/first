@@ -1,4 +1,188 @@
-/*
-<span class="arrow">▼</span>
 
-*/
+        h2 {
+            display: inline-block;
+
+            margin-right: 20px;
+        }
+
+        .header-wrapper {
+            display: flex;
+            /* 使用弹性布局，使子元素同一行 */
+            align-items: center;
+            /* 垂直居中对齐 */
+            justify-content: space-between;
+            /* 两端对齐 */
+        }
+
+        ul {
+            list-style: none;
+            /* 移除默认列表样式  圆点 */
+            margin: 0;
+            padding: 0;
+        }
+
+        .horizontal-list li {
+            display: inline-block;
+            /* 让列表项横向排列 */
+            margin-left: 4px;
+            /* 可选：给两个图标加间距，避免挤在一起 */
+            vertical-align: middle;
+        }
+
+        .backgroundchange {
+            padding: 7.5px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .backgroundchange:hover {
+            background-color: #e5e5e5;
+        }
+
+        .round {
+            border-radius: 16px;
+        }
+
+        /**/
+        /* 容器样式：控制整体布局 */
+        .container {
+            width: 200px;
+            margin-left: 50px;
+            position: relative;
+            display: inline-block;
+
+        }
+
+        /* 按钮样式：包含“新建”文字和箭头 */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #e3e2e2;
+            cursor: pointer;
+            box-sizing: border-box;
+            /* 新增：防止padding撑大按钮宽度（重要） */
+            border-radius: 10px;
+        }
+
+        /* 箭头样式：初始向下，旋转由 JS 控制 */
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .more {
+            margin-left: auto;
+            /* 核心：自动填充左侧剩余空间，将箭头推到最右侧 */
+            transform: rotate(270deg);
+            /* 保留原旋转效果 */
+        }
+
+        /* 下拉菜单样式：默认隐藏，绝对定位避免影响布局 */
+        .dropdown {
+            display: none;
+            position: absolute;
+            width: 200px;
+            top: 100%;
+            /* 菜单顶部 = 容器底部（紧贴按钮下方） */
+            left: 0;
+            /* 菜单左侧 = 容器左侧（左右对齐） */
+            width: 100%;
+            /* 与按钮完全同宽 */
+            background-color: #fff;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-item:hover {
+            background-color: #e5e5e5;
+        }
+
+        /* 1. “更多类型”父容器：开启相对定位，为子元素绝对定位提供参考 */
+        .more-type-container {
+            position: relative;
+            /* 关键：子元素的绝对定位相对于此容器 */
+            z-index: 10;
+            /* 确保“更多类型”项在最上层，避免被右侧元素遮挡 */
+        }
+
+        /* 2. 右侧“幻灯片”元素：默认隐藏，悬浮时显示并定位 */
+        .more-type-slide {
+            /* 默认隐藏 */
+            display: none;
+            /* 绝对定位：放在“更多类型”项右侧，上下居中 */
+            position: absolute;
+            left: 100%;
+            /* 左边缘与父容器右边缘对齐（贴紧右侧） */
+            top: 0;
+            /* 上边缘与父容器上边缘对齐 */
+            bottom: 0;
+            /* 下边缘与父容器下边缘对齐 */
+            margin-left: 2px;
+            /* 与“更多类型”项之间留2px间隙，避免重叠 */
+            /* 样式与其他菜单项保持一致 */
+            width: 100%;
+            /* 宽度与“更多类型”项相同（平行效果） */
+            padding: 10px;
+            align-items: center;
+            background-color: #fff;
+            /* 白色背景，与下拉菜单一致 */
+            border: 1px solid #eee;
+            /* 轻微边框，与下拉菜单风格统一 */
+            border-left: none;
+            /* 取消左侧边框，避免与“更多类型”项边框重叠 */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            /* 右侧轻微阴影，增强层次感 */
+            cursor: pointer;
+            /* 鼠标悬浮时显示“手”型，提示可点击 */
+            box-sizing: border-box;
+            /* 确保padding不撑大宽度 */
+            z-index: 9;
+            /* 层级低于“更多类型”项，避免遮挡父元素 */
+        }
+
+        /* 3. 鼠标悬浮“更多类型”项时，显示右侧“幻灯片”元素 */
+        .more-type-container:hover .more-type-slide {
+            display: flex;
+            /* 显示并使用flex布局，与其他菜单项对齐图标和文字 */
+        }
+
+        /* 4. 鼠标悬浮右侧“幻灯片”元素时：背景变灰（与其他菜单项hover效果一致） */
+        .more-type-slide:hover {
+            background-color: #e5e5e5;
+        }
+
+        .buttontitle {
+            font-size: 16px;
+        }
+
+        .buttontext {
+            font-size: 12px;
+            color: gray;
+        }
+
+        /* 按钮容器 hover 时背景变灰 */
+        .btn-container {
+            /* 可选：添加内边距，让背景区域更协调（与图标 hover 区域匹配） */
+            padding: 5px;
+            border-radius: 8px;
+            /* 圆角，与按钮风格统一 */
+            transition: background-color 0.2s ease;
+            /* 过渡动画，hover 更流畅 */
+        }
+
+        /* 鼠标悬停时触发 */
+        .btn-container:hover {
+            background-color: #e5e5e5;
+            /* 与顶部图标 hover 灰度过渡一致 */
+        }
