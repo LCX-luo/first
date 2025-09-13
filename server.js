@@ -23,7 +23,7 @@ app.post('/submit', (req, res) => {
     
     // 简单的验证逻辑
     if (username === 'a' && password === 'a') {
-        res.json({ code: 200, message: '登录成功！欢迎回来，' + username });
+        res.json({ code: 200, message: '登录成功！' + username });
     } else {
         res.status(400).json({ code: 400, message: '用户名或密码错误' });
     }

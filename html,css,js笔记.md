@@ -95,6 +95,44 @@
 | `fixed`    | ✅ 完全脱离     | 浏览器视口（viewport）                                       | 固定元素位置（如顶部导航栏、回到顶部按钮）         |
 | `sticky`   | ⚠️ 半脱离       | 父容器的 “可视区域”                                          | 滚动时 “吸顶 / 吸底”（如列表标题、筛选栏）         |
 
+CSS 属性表格，包含属性名称、核心作用及典型示例，便于快速查阅和使用：
+
+| 分类       | CSS 属性                      | 核心作用                                                     | 典型示例                                                     |
+| ---------- | ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 盒模型基础 | `width`                       | 定义元素 **内容区域** 的宽度（默认单位：px，支持 %、rem 等） | `width: 300px;` / `width: 80%;`                              |
+|            | `height`                      | 定义元素 **内容区域** 的高度                                 | `height: 200px;` / `height: auto;`                           |
+|            | `padding`                     | 元素 **内容与边框之间的内边距**（可分方向：top/right/bottom/left） | `padding: 10px 15px;`（上下 10px，左右 15px）                |
+|            | `margin`                      | 元素 **与其他元素之间的外边距**（可分方向，支持`auto`实现水平居中） | `margin: 0 auto;` / `margin-bottom: 20px;`                   |
+|            | `border`                      | 元素边框（简写，包含`border-width`+`border-style`+`border-color`） | `border: 2px solid #333;`                                    |
+|            | `border-radius`               | 为元素添加 **圆角**（值越大，圆角越明显，支持圆形 / 椭圆）   | `border-radius: 8px;` / `border-radius: 50%;`                |
+|            | `box-sizing`                  | 控制盒模型计算方式（解决宽高包含范围问题）                   | `box-sizing: border-box;`（推荐，含 padding+border）         |
+| 定位与显示 | `position`                    | 定义元素定位类型，控制元素在页面中的位置                     | `position: relative;` / `position: absolute;`                |
+|            | `top`/`right`/`bottom`/`left` | 配合`position`（非 static），精确控制元素的偏移位置          | `top: 20px; right: 10px;`（相对定位偏移）                    |
+|            | `display`                     | 定义元素的 **显示模式**（控制元素是否换行、是否可同行排列）  | `display: block;` / `display: flex;` / `display: none;`      |
+|            | `z-index`                     | 控制元素的 **层叠顺序**（值越大，层级越高，仅对定位元素生效） | `z-index: 10;`（层级高于 z-index:5 的元素）                  |
+|            | `float`                       | 使元素 **脱离文档流浮动**（左 / 右浮动，常用于早期布局，现多被 flex 替代） | `float: left;` / `clear: both;`（清除浮动）                  |
+| 背景样式   | `background-color`            | 定义元素的 **背景颜色**（支持十六进制、RGB、英文单词）       | `background-color: #f5f5f5;` / `background-color: rgba(0,0,0,0.5);` |
+|            | `background-image`            | 为元素设置 **背景图片**（支持本地图片或网络图片）            | `background-image: url("bg.jpg");`                           |
+|            | `background-size`             | 控制背景图片的 **尺寸**（cover：覆盖容器；contain：完整显示） | `background-size: cover;` / `background-size: 100% 100%;`    |
+|            | `background-position`         | 控制背景图片的 **位置**（支持方位词或数值）                  | `background-position: center;` / `background-position: 20px 30px;` |
+|            | `background-repeat`           | 控制背景图片是否 **重复显示**（no-repeat：不重复；repeat-x：水平重复） | `background-repeat: no-repeat;`                              |
+| 文本样式   | `color`                       | 定义 **文本颜色**（同 background-color，支持多种颜色格式）   | `color: #333;` / `color: red;`                               |
+|            | `font-size`                   | 定义文本 **字体大小**（默认 16px，推荐用 rem 适配）          | `font-size: 16px;` / `font-size: 1.2rem;`                    |
+|            | `font-weight`                 | 定义文本 **粗细**（normal：正常；bold：加粗；数值：100-900） | `font-weight: bold;` / `font-weight: 600;`                   |
+|            | `font-family`                 | 定义文本 **字体家族**（推荐设置 fallback 字体，避免字体缺失） | `font-family: "Microsoft YaHei", sans-serif;`                |
+|            | `text-align`                  | 控制文本 **水平对齐方式**（left/center/right/justify）       | `text-align: center;`（文本居中）                            |
+|            | `line-height`                 | 定义文本 **行高**（控制行间距，值为数字时是 font-size 的倍数） | `line-height: 1.5;` / `line-height: 24px;`                   |
+|            | `text-decoration`             | 为文本添加装饰（underline：下划线；none：取消下划线，常用于链接） | `text-decoration: none;`（取消链接下划线）                   |
+| 弹性布局   | `display: flex`               | 将元素设置为 **弹性容器**，子元素自动成为弹性项（现代布局核心） | `display: flex;`（父容器添加）                               |
+|            | `justify-content`             | 控制弹性项 **水平方向** 的对齐方式（主轴对齐）               | `justify-content: space-between;`（两端对齐）                |
+|            | `align-items`                 | 控制弹性项 **垂直方向** 的对齐方式（交叉轴对齐）             | `align-items: center;`（垂直居中）                           |
+|            | `flex-direction`              | 控制弹性项的 **排列方向**（row：水平；column：垂直）         | `flex-direction: column;`（垂直排列）                        |
+|            | `flex`                        | 控制弹性项的 **伸缩比例**（简写，包含 flex-grow/flex-shrink/flex-basis） | `flex: 1;`（占满剩余空间） / `flex: 0 0 200px;`（固定宽度）  |
+| 其他常用   | `cursor`                      | 定义鼠标悬浮在元素上时的 **光标样式**（pointer：手型，常用于按钮 / 链接） | `cursor: pointer;` / `cursor: default;`                      |
+|            | `opacity`                     | 控制元素的 **透明度**（0：完全透明；1：不透明，影响子元素）  | `opacity: 0.8;`（80% 不透明度）                              |
+|            | `overflow`                    | 控制元素内容 **溢出时的处理方式**（hidden：隐藏；auto：滚动条） | `overflow: hidden;` / `overflow-y: auto;`                    |
+|            | `transition`                  | 为元素样式变化添加 **过渡动画**（平滑切换，无需 JS）         | `transition: all 0.3s ease;`（所有样式 300ms 平滑过渡）      |
+
 # JS
 
 ### 输出
@@ -247,4 +285,106 @@ document.getElementsByTagName ()
 document.getElementsByClassName()
 
  返回一个类似数组的对象,包括了所有class名字符合指定条件的元素，
+
+## =>
+
+### 一、基本语法
+
+箭头函数的核心是用 `=>` 连接参数列表和函数体，基本形式如下：
+
+#### 1. 完整形式（多参数 + 多语句函数体）
+
+```javascript
+// 传统函数
+const add = function(a, b) {
+  return a + b;
+};
+
+// 箭头函数等效写法
+const add = (a, b) => {
+  return a + b;
+};
+```
+
+#### 2. 简化形式（单表达式函数体）
+
+如果函数体只有**一条返回语句**，可以省略 `{}` 和 `return`：
+
+```javascript
+const add = (a, b) => a + b; // 自动返回表达式结果
+```
+
+#### 3. 单参数简化
+
+如果只有**一个参数**，可以省略参数列表的 `()`：
+
+```javascript
+const double = num => num * 2; // 等效于 (num) => num * 2
+```
+
+#### 4. 无参数
+
+无参数时，必须保留 `()`：
+
+```javascript
+const getRandom = () => Math.random();
+```
+
+#### 5. 返回对象字面量
+
+如果直接返回对象，需要用 `()` 包裹对象（避免 `{}` 被解析为函数体）：
+
+```javascript
+const getUser = () => ({ name: "Alice", age: 20 });
+// 错误写法：const getUser = () => { name: "Alice" };（会被解析为函数体）
+```
+
+### 二、与传统函数的核心区别
+
+1. **没有自己的 `this`**
+   箭头函数不会绑定 `this`，它的 `this` 是**继承自外层作用域**（定义时的上下文），且永远不会改变。
+   这解决了传统函数中 `this` 指向易变的问题（例如在回调函数中）。
+
+   ```javascript
+   const obj = {
+     name: "Bob",
+     // 传统函数：this 指向调用者（obj）
+     sayHi1: function() {
+       console.log(this.name); // "Bob"
+     },
+     // 箭头函数：this 继承自外层（全局作用域，非 obj）
+     sayHi2: () => {
+       console.log(this.name); // undefined（浏览器中 this 指向 window）
+     }
+   };
+   ```
+
+2. **不能作为构造函数**
+   箭头函数不能用 `new` 调用，否则会报错（因为它没有 `prototype`）。
+
+   ```javascript
+   const Person = () => {};
+   new Person(); // 报错：Person is not a constructor
+   ```
+
+3. **没有 `arguments` 对象**
+   无法通过 `arguments` 获取参数列表，需用**剩余参数（`...args`）** 替代。
+
+   ```javascript
+   // 传统函数
+   function sum1() {
+     return Array.from(arguments).reduce((a, b) => a + b, 0);
+   }
+   
+   // 箭头函数
+   const sum2 = (...args) => {
+     return args.reduce((a, b) => a + b, 0);
+   };
+   ```
+
+4. **不能使用 `yield`**
+   箭头函数不能作为生成器（Generator）函数。
+
+setTimeout函数
+setTimeout(function,x);  function是需要延迟之后执行的代码，x是时间（毫秒，1000=1秒）
 

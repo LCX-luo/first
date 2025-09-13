@@ -145,7 +145,7 @@
   alt="风景照片" 
   width="300" 
   height="200"
-  loading="lazy" <!-- 懒加载 -->
+  loading="lazy" <!-- 只有图片出现在页面时才加载图片 -->
 >
 ```
 
@@ -160,6 +160,118 @@
 ```
 
 ### 五、表单标签
+
+#### 一、`<form>` 标签的核心属性
+
+这些属性控制整个表单的提交行为和数据处理方式：
+
+1. **`action`**
+   - 作用：指定表单数据提交的后端接口地址（URL）。
+   - 示例：`<form action="/api/login" ...>` 表示数据会提交到 `/api/login` 接口。
+   - 若省略，默认提交到当前页面的 URL。
+2. **`method`**
+   - 作用：指定表单数据的提交方式（HTTP 方法）。
+   - 可选值：
+     - `get`（默认）：数据会拼接在 URL 后（如 `?username=xxx&password=xxx`），适合简单、非敏感数据，有长度限制。
+     - `post`：数据放在请求体中发送，适合敏感数据（如密码）或大量数据，无长度限制。
+   - 示例：`<form method="post" ...>`
+3. **`enctype`**
+   - 作用：指定表单数据的编码方式，仅在 `method="post"` 时有效。
+   - 常用值：
+     - `application/x-www-form-urlencoded`（默认）：普通表单数据编码。
+     - `multipart/form-data`：用于上传文件（必须配合 `<input type="file">` 使用）。
+     - `text/plain`：纯文本编码，适合简单场景。
+   - 示例：`<form enctype="multipart/form-data" ...>`（用于文件上传）
+4. **`target`**
+   - 作用：指定表单提交后响应内容的显示位置。
+   - 常用值：
+     - `_self`（默认）：在当前窗口显示。
+     - `_blank`：在新窗口显示。
+     - `_parent`/`_top`：在父框架 / 顶层框架显示。
+   - 示例：`<form target="_blank" ...>`
+5. **`autocomplete`**
+   - 作用：控制表单是否启用自动填充功能（浏览器记住之前输入的值）。
+   - 可选值：`on`（默认启用）、`off`（禁用）。
+   - 示例：`<form autocomplete="off" ...>`（适合敏感表单，如登录）
+
+#### 二、表单控件（如 `<input>`、`<select>` 等）的常用属性
+
+这些属性控制单个输入字段的行为、验证规则等：
+
+1. **`name`**
+
+   - 作用：定义表单控件的名称，是提交数据时的「键」（与 `value` 组成键值对）。
+   - 注意：未设置 `name` 的控件，其值不会被提交。
+   - 示例：`<input type="text" name="username">` 提交后为 `username=xxx`。
+
+2. **`value`**
+
+   - 作用：设置控件的默认值或当前值。
+   - 示例：`<input type="text" value="默认用户名">`（文本框默认显示该内容）。
+
+3. **`required`**
+
+   - 作用：标记控件为必填项，提交时若为空，浏览器会自动提示验证错误。
+   - 适用控件：`<input>`、`<select>`、`<textarea>` 等。
+   - 示例：`<input type="password" required>`（密码不能为空）。
+
+4. **`type`**（主要用于 `<input>`）
+
+   - 作用：定义输入控件的类型，决定输入方式和验证规则。
+   - 常用值：`text`（文本）、`password`（密码）、`number`（数字）、`email`（邮箱）、`checkbox`（复选框）等。
+   - 示例：`<input type="email">`（自动验证邮箱格式）。
+
+5. **`placeholder`**
+
+   - 作用：在控件为空时显示提示文本（如输入示例），不影响实际提交的值。
+   - 适用控件：`<input>`（部分类型）、`<textarea>`。
+   - 示例：`<input type="text" placeholder="请输入用户名">`。
+
+6. **`disabled`**
+
+   - 作用：禁用控件，使其不可编辑、不可点击，且值不会被提交。
+   - 示例：`<input type="text" disabled value="不可修改">`。
+
+7. **`readonly`**
+
+   - 作用：设置控件为只读（可选中但不可编辑），但其值会被正常提交。
+   - 示例：`<input type="text" readonly value="只读内容">`。
+
+8. **`checked`**（用于复选框 / 单选按钮）
+
+   - 作用：设置复选框（`checkbox`）或单选按钮（`radio`）默认选中状态。
+
+   - 示例：
+
+     ```html
+     <input type="checkbox" checked name="agree"> 同意协议
+     <input type="radio" name="gender" value="male" checked> 男
+     ```
+
+9. **`maxlength`**（用于文本输入）
+
+   - 作用：限制输入的最大字符数。
+   - 示例：`<input type="text" maxlength="10">`（最多输入 10 个字符）。
+
+10. **`min`/`max`**（用于数字 / 日期输入）
+
+    - 作用：限制数字、日期等类型的最小值和最大值。
+    - 示例：`<input type="number" min="0" max="100">`（只能输入 0-100 的数字）。
+
+11. **`pattern`**
+
+    - 作用：通过正则表达式自定义输入验证规则。
+    - 示例：`<input type="text" pattern="[A-Za-z0-9]{6,}" title="请输入6位以上字母或数字">`（限制 6 位以上字母 / 数字）。
+
+#### 三、其他实用属性
+
+- **`autofocus`**：页面加载时自动聚焦到该控件（一个页面通常只设置一个）。
+  示例：`<input type="text" autofocus>`
+- **`multiple`**：允许选择多个值（如文件上传、多选下拉框）。
+  示例：`<input type="file" multiple>`（可选择多个文件）
+- **`size`**：设置控件的显示宽度（以字符为单位，主要用于文本输入）。
+  示例：`<input type="text" size="20">`
+
 #### 1. 基础表单结构
 ```html
 <form action="/submit" method="POST">
@@ -491,6 +603,7 @@
 | `disabled`   | 表单元素                 | 禁用状态                     |
 | `readonly`   | `<input>`, `<textarea>`   | 只读状态                     |
 | `required`   | 表单元素                 | 必填项验证                   |
+| line-height | 字体相关 | 行高 |
 | `data-*`     | 所有标签                 | 自定义数据属性（JS使用）     |
 
 
