@@ -49,10 +49,6 @@
 
         #dashboard {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
         }
     </style>
 </head>
@@ -85,18 +81,36 @@
             const password = document.getElementById('password').value;
             const messageDiv = document.getElementById('message');
             const loginSection = document.getElementById('loginSection');
+            // 前端密码哈希函数
+            async function hashPassword(password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                // 生成 SHA-256 哈希
+                const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+                // 转换为十六进制字符串
+                return Array.from(new Uint8Array(hashBuffer))
+                    .map(b => b.toString(16).padStart(2, '0'))
+                    .join('');
+            }
+            const hashedPassword =await hashPassword(password);
+            console.log(hashedPassword);
             try {
                 // 发送POST请求到后端服务
-                const response = await axios.post('http://127.0.0.1:3000/submit', {
-                    username: username,
-                    password: password
+                // const response = await axios.post('http://127.0.0.1:3000/submit', {
+                //     username: username,
+                //     password: hashedPassword
+                // });
+                const response = await axios({
+                    method: 'post',                  // 显式指定 POST 方法
+                    url: 'http://127.0.0.1:3000/submit',  // url 属性
+                    data: { username: username, password: hashedPassword },    // data 属性（对应请求体）
+                    timeout: 5000,                   // 额外配置
+                    headers: { 'Content-Type': 'application/json' }
                 });
                 // 显示成功消息
-                messageDiv.textContent = response.data.message;
+                messageDiv.textContent = '用户'+response.data.username+'登录成功！';
                 messageDiv.className = 'message success';
                 setTimeout(() => {
-                    console.log("3秒后执行的代码");
-
                     // 隐藏登录表单，显示欢迎信息
                     document.getElementById('loginSection').style.display = 'none';
                     const dashboard = document.getElementById('dashboard');
