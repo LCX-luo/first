@@ -95,18 +95,17 @@
             const hashedPassword =await hashPassword(password);
             console.log(hashedPassword);
             try {
-                // 发送POST请求到后端服务
-                // const response = await axios.post('http://127.0.0.1:3000/submit', {
-                //     username: username,
-                //     password: hashedPassword
-                // });
-                const response = await axios({
-                    method: 'post',                  // 显式指定 POST 方法
-                    url: 'http://127.0.0.1:3000/submit',  // url 属性
-                    data: { username: username, password: hashedPassword },    // data 属性（对应请求体）
-                    timeout: 5000,                   // 额外配置
-                    headers: { 'Content-Type': 'application/json' }
+                const response = await axios.post('http://127.0.0.1:3000/submit', {
+                    username: username,
+                    password: hashedPassword
                 });
+                // const response = await axios({
+                //     method: 'post',                  // 显式指定 POST 方法
+                //     url: 'http://127.0.0.1:3000/submit',  // url 属性
+                //     data: { username: username, password: hashedPassword },    // data 属性（对应请求体）
+                //     timeout: 5000,                   // 额外配置
+                //     headers: { 'Content-Type': 'application/json' }
+                // });
                 // 显示成功消息
                 messageDiv.textContent = '用户'+response.data.username+'登录成功！';
                 messageDiv.className = 'message success';
