@@ -70,7 +70,8 @@
     </div>
     <!-- 登录成功后显示的新界面 -->
     <div id="dashboard">
-        <h2>欢迎回来！</h2>
+        <h2>欢迎来到用户仪表盘！</h2>
+        <p>这里是登录成功后显示的内容。</p>
     </div>
     <script>
         // 阻止表单默认提交行为，使用Axios发送请求
@@ -92,7 +93,7 @@
                     .map(b => b.toString(16).padStart(2, '0'))
                     .join('');
             }
-            const hashedPassword =await hashPassword(password);
+            const hashedPassword = await hashPassword(password);
             console.log(hashedPassword);
             try {
                 const response = await axios.post('http://127.0.0.1:3000/submit', {
@@ -107,7 +108,7 @@
                 //     headers: { 'Content-Type': 'application/json' }
                 // });
                 // 显示成功消息
-                messageDiv.textContent = '用户'+response.data.username+'登录成功！';
+                messageDiv.textContent = '用户' + response.data.username + '登录成功！';
                 messageDiv.className = 'message success';
                 setTimeout(() => {
                     // 隐藏登录表单，显示欢迎信息
