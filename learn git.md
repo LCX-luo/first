@@ -32,3 +32,10 @@ disk磁盘存储
 
 **git checkout ()**
 
+git config --global http.proxy http://127.0.0.1:7897
+
+git config --global https.proxy http://127.0.0.1:7897
+
+可以开梯子上传
+
+地址：网络和internet-代理-手动设置代理
