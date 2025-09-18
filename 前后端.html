@@ -113,10 +113,10 @@
                 setTimeout(() => {
                     // 隐藏登录表单，显示欢迎信息
                     document.getElementById('loginSection').style.display = 'none';
-                    const dashboard = document.getElementById('dashboard');
                     dashboard.style.display = 'block';
                     // 打印响应到控制台
                     console.log('响应数据：', response.data);
+                    window.location.href = '自我介绍/自我介绍.html'; 
                 }, 1000);
             } catch (error) {
                 // 显示错误消息
