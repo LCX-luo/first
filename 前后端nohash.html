@@ -82,23 +82,11 @@
             const password = document.getElementById('password').value;
             const messageDiv = document.getElementById('message');
             const loginSection = document.getElementById('loginSection');
-            // 前端密码哈希函数
-            async function hashPassword(password) {
-                const encoder = new TextEncoder();
-                const data = encoder.encode(password);
-                // 生成 SHA-256 哈希
-                const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
-                // 转换为十六进制字符串
-                return Array.from(new Uint8Array(hashBuffer))
-                    .map(b => b.toString(16).padStart(2, '0'))
-                    .join('');
-            }
-            const hashedPassword = await hashPassword(password);
-            console.log(hashedPassword);
+
             try {
-                const response = await axios.post('http://127.0.0.1:3000/submit', {
+                const response = await axios.post('http://127.0.0.1:4000/submit', {
                     username: username,
-                    password: hashedPassword
+                    password: password,
                 });
                 // const response = await axios({
                 //     method: 'post',                  // 显式指定 POST 方法

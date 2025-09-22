@@ -21,7 +21,7 @@ const users = [
     {
         username: 'kfyzadmin',
         // 原密码 '123456' 的 SHA-256 哈希值
-        hashedpassword: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'
+        hashedpassword:'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'
     }
 ];
 // 解析JSON请求体
@@ -35,10 +35,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-// 配置静态文件服务，允许访问当前目录下的文件
-app.use(express.static(__dirname));
-// 目标文件路径
-const targetFileName = '自我介绍/自我介绍.html';
 
 // 处理登录请求
 app.post('/submit', (req, res) => {
@@ -46,22 +42,19 @@ app.post('/submit', (req, res) => {
     console.log('收到登录请求：', { username, hashedPassword });
 
     // 查找匹配的用户
-    const matchedUser = users.find(user =>
+    const matchedUser = users.find(user => 
         user.username === username && user.hashedpassword === hashedPassword
     );
 
     if (matchedUser) {
-        // 生成可访问的URL（重要！）
-        const fileAccessUrl = `http://localhost:${PORT}/${targetFileName}`;
-        res.json({
-            code: 200,
-            fileUrl: fileAccessUrl  // 返回网络可访问的URL
+        res.json({ 
+            code: 200, 
+            username: matchedUser.username  // 返回当前登录的用户名
         });
-        console.log(fileAccessUrl);
     } else {
-        res.status(400).json({
-            code: 400,
-            message: '用户名或密码错误'
+        res.status(400).json({ 
+            code: 400, 
+            message: '用户名或密码错误' 
         });
     }
 });
