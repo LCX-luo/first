@@ -35,7 +35,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-// 配置静态文件服务，允许访问当前目录下的文件
+//配置静态文件服务，允许访问当前目录下的文件
 app.use(express.static(__dirname));
 // 目标文件路径
 const targetFileName = '自我介绍/自我介绍.html';

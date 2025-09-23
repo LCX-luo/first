@@ -32,10 +32,12 @@ disk磁盘存储
 
 **git checkout ()**
 
+# 解决开vpn上传github443端口超时报错的方法
+
 git config --global http.proxy http://127.0.0.1:7897
 
 git config --global https.proxy http://127.0.0.1:7897
 
 可以开梯子上传
 
-地址：网络和internet-代理-手动设置代理
+http://127.0.0.1:7897是我的代理地址，查看自己的代理地址路径：网络和internet-代理-手动设置代理

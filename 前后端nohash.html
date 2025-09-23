@@ -100,7 +100,7 @@
                 messageDiv.className = 'message success';
                 setTimeout(() => {
                     // 打印响应到控制台
-                    console.log('响应数据：', response.data.username);
+                    console.log('响应数据：', response.data.fileUrl);
                     // 使用服务器返回的网络URL进行重定向
                     window.location.href = response.data.fileUrl;
                 }, 1500);
