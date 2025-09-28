@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <title>自我介绍</title>
 </head>
+
 <body>
     <header class="headerstyle">
         <img src="dorohead.png" alt="图片不见了" title="好看吗">
@@ -20,7 +21,7 @@
 
         </ul>
     </header>
-   
+
     <div class="main-introducemyself">
         <img src="dorohead.png" alt="我的照片">
         <div class="main-text">
@@ -46,7 +47,7 @@
             introImage.style.boxShadow = 'none';
         });
     </script>
-    
+
     <div id="skills" class="skills-section">
         <h2 class="section-title">我的技能</h2>
         <div class="skills-container">
@@ -75,7 +76,7 @@
     </div>
 
 
-    
+
     <br>
     <h1 style=" text-align: center;" id="life">照片</h1>
     <div class="carousel">
@@ -157,39 +158,87 @@
         });
     </script>
     <div class="contact-section" id="contact">
-    <h2 class="section-title">联系我</h2>
-    <div class="contact-container">
-        <!-- 邮箱联系卡片 -->
-        <div class="contact-card">
-            <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
+        <h2 class="section-title">联系我</h2>
+        <div class="contact-container">
+            <!-- 邮箱联系卡片 -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>邮箱</h3>
+                <p>随时发送邮件咨询</p>
+                <p>1010958435@qq.com</p>
             </div>
-            <h3>邮箱</h3>
-            <p>随时发送邮件咨询</p>
-            <p>1010958435@qq.com</p>
-        </div>
-        
-        <!-- 电话联系卡片 -->
-        <div class="contact-card">
-            <div class="contact-icon">
-                <i class="fas fa-phone"></i>
+
+            <!-- 电话联系卡片 -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>电话</h3>
+                <p>每天9:00-23:00接听</p>
+                <p>+86 173 1955 1236</p>
             </div>
-            <h3>电话</h3>
-            <p>每天9:00-23:00接听</p>
-            <p>+86 173 1955 1236</p>
-        </div>
-        
-        <!-- 微信联系卡片 -->
-        <div class="contact-card">
-            <div class="contact-icon">
-                <i class="fab fa-weixin"></i>
+
+            <!-- 微信联系卡片 -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-weixin"></i>
+                </div>
+                <h3>微信</h3>
+                <p>添加好友咨询</p>
+                <p>wxid_pc62umw22ef322</p>
             </div>
-            <h3>微信</h3>
-            <p>添加好友咨询</p>
-            <p>wxid_pc62umw22ef322</p>
         </div>
     </div>
-</div>
+
+    <div id="movebuttonbackground">
+        <h1>评价一下？</h1>
+        <div id="twobutton">
+            <button id="yesbutton">好看</button>
+            <button id="nobutton">不好看</button>
+        </div>
+    </div>
+    <script>
+        const yesButton = document.getElementById('yesbutton');
+        const noButton = document.getElementById('nobutton');
+        const movebuttonbackground = document.getElementById('movebuttonbackground');
+
+        // 获取按钮自身尺寸
+        const buttonWidth = noButton.offsetWidth;
+        const buttonHeight = noButton.offsetHeight;
+
+        yesButton.addEventListener('click', () => {
+            alert('谢谢认可！😊');
+        });
+
+        function movebutton() {
+            // 获取背景框的尺寸和位置信息
+            const boxRect = movebuttonbackground.getBoundingClientRect();
+            const boxWidth = boxRect.width;
+            const boxHeight = boxRect.height;
+
+            // 计算最大可移动范围（减去按钮自身尺寸，确保不会超出框外）
+            const maxX = boxWidth - buttonWidth;
+            const maxY = boxHeight - buttonHeight;
+
+            // 生成框内的随机位置
+            const x = Math.floor(Math.random() * maxX);
+            const y = Math.floor(Math.random() * maxY);
+
+            // 设置按钮位置（使用相对定位）
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        noButton.addEventListener('mouseover', movebutton);
+
+        // 给"不好看"按钮也添加点击事件
+        noButton.addEventListener('click', () => {
+            alert('你再仔细看看嘛！😉');
+        });
+    </script>
     <h2 style="text-align: center" id="message-boardbackground">留言板</h2>
     <div class="message-boardbackground">
         <div class="message-boardform">
@@ -288,8 +337,8 @@
                 messagesContainer.appendChild(messageDiv);
                 document.getElementById('clearAllMessages').style.display = "block";
             });
-            if(messagesContainer.innerHTML ==''){
-                messagesContainer.innerHTML='<p style="text-align:center">还没有留言，快来抢沙发吧！</p>';
+            if (messagesContainer.innerHTML == '') {
+                messagesContainer.innerHTML = '<p style="text-align:center">还没有留言，快来抢沙发吧！</p>';
             }
         }
         // 清空所有留言
