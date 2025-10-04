@@ -1,51 +1,18 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-    <script src="vue.global.js"></script>
-  </head>
-  <body>
-    <div id="app"><span v-html="rawHtml"></span></div>
-    <script type="module" src="/src/main.js"></script>
-    <div id="m">
-      {{ message }}
-    </div>
-    <script>
-      const m = Vue.createApp({
-        data() {
-          return {
-            message: 'Hello Vue!'
-          }
-        }
-      })
-      m.mount('#m');
-      const app = Vue.createApp({
-        data() {
-          return {
-            rawHtml: '<span style="color: red">这里会显示红色！</span>'
-          }
-        }
-      })
-       app.mount('#app');
-    </script>
-    <div id="example1" class="demo">
-    <p>使用双大括号的文本插值: {{ rawHtml }}</p>
-    <p>使用 v-html 指令: <span v-html="rawHtml"></span></p>
-</div>
- 
-<script>
-const RenderHtmlApp = {
-  data() {
-    return {
-      rawHtml: '<span style="color: red">这里会显示红色！</span>'
-    }
-  }
-}
- 
-Vue.createApp(RenderHtmlApp).mount('#example1')
-</script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+  <script src="vue.global.js"></script>
+
+</head>
+
+<body>
+  <script type="module" src="/src/main.js"></script> 
+  <div id="htmlheader"></div>
+</body>
+
 </html>

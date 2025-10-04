@@ -1,0 +1,15 @@
+  :root {
+      --primary-color: #569ef0;
+      --primary-light: #e0e7ff;
+      --primary-dark: #0074f9;
+      --secondary-color: #9faaff;
+      --bg-light: #f8f9fa;
+      --text-dark: #333;
+      --text-light: #666;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+  }
+
+  html {
+      scroll-behavior: smooth;
+  }
