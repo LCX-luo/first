@@ -32,6 +32,7 @@
     justify-content: space-between;
     margin-top: 180px;
     padding: 0 50px;
+
 }
 
 #yesbutton {
@@ -90,7 +91,7 @@
         width: 90%;
         height: 250px;
     }
-    
+
     #twobutton {
         padding: 0 20px;
         margin-top: 120px;
@@ -114,11 +115,11 @@ export default {
         this.yesButton = document.getElementById('yesbutton');
         this.noButton = document.getElementById('nobutton');
         this.movebuttonbackground = document.getElementById('movebuttonbackground');
-        
+
         // 获取按钮尺寸
         this.buttonWidth = this.noButton.offsetWidth;
         this.buttonHeight = this.noButton.offsetHeight;
-        
+
         // 绑定事件
         this.yesButton.addEventListener('click', () => this.handleYesClick());
         this.noButton.addEventListener('mouseover', () => this.moveButton());
@@ -133,19 +134,20 @@ export default {
         },
         moveButton() {
             // 获取背景框的尺寸和位置信息
-            const boxRect = this.movebuttonbackground.getBoundingClientRect();
-            const boxWidth = boxRect.width;
-            const boxHeight = boxRect.height;
-            
+            // const boxRect = this.movebuttonbackground.getBoundingClientRect();
+            const boxWidth = 500;
+            const boxHeight = 300;
+            // alert(`背景框的尺寸为${boxWidth}px，${boxHeight}px`);
             // 计算最大可移动范围（减去按钮自身尺寸和内边距）
             const maxX = boxWidth - this.buttonWidth - 20; // 减去内边距
             const maxY = boxHeight - this.buttonHeight - 20;
-            
+
             // 生成框内的随机位置
             const x = Math.floor(Math.random() * maxX);
             const y = Math.floor(Math.random() * maxY);
             
-            // 设置按钮位置
+            //设置按钮位置
+            //alert(`按钮将在${x}px，${y}px处移动`)
             this.noButton.style.position = 'absolute';
             this.noButton.style.left = `${x}px`;
             this.noButton.style.top = `${y}px`;

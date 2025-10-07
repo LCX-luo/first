@@ -4,25 +4,25 @@ import { createApp } from 'vue'
 // import App from './App.vue'
 
 // createApp(App).mount('#app')
-import './htmlroot.css'
-import Header from './header.vue'
+import './components/htmlroot.css'
+import Header from './components/header.vue'
 createApp(Header).mount('#htmlheader')
 
 
-import mainIntroducemyself from './main-introducemyself.vue'
+import mainIntroducemyself from './components/main-introducemyself.vue'
 createApp(mainIntroducemyself).mount('#main-introducemyself')
 
-import skills from './skills.vue'  
+import skills from './components/skills.vue'  
 createApp(skills).mount('#skills')
 
-import carousel from './carousel.vue'
+import carousel from './components/carousel.vue'
 createApp(carousel).mount('#carousel')
 
-import contact from './contact.vue'
+import contact from './components/contact.vue'
 createApp(contact).mount('#contact')
 
-import movebuttonbackground from './movebuttonbackground.vue'
+import movebuttonbackground from './components/movebuttonbackground.vue'
 createApp(movebuttonbackground).mount('#movebuttonbackground')  
 
-import message from './message.vue'
+import message from './components/message.vue'
 createApp(message).mount('#message')

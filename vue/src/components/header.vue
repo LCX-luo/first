@@ -39,7 +39,7 @@ header ul li a:hover {
 </style>
 <template>
     <header class="headerstyle">
-        <img src="./assets/dorohead.png" alt="图片不见了" title="好看吗">
+        <img src="../assets/dorohead.png" alt="图片不见了" title="好看吗">
         <h1>你好！</h1>
         <ul>
             <li><a href="#skills">技能</a></li>

@@ -16,3 +16,17 @@ export default defineConfig({
     },
   },
 })
+
+
+
+// import { defineConfig } from 'vite'
+// import vue from '@vitejs/plugin-vue' // 若你是 Vue 项目，必须有这行；非 Vue 项目可删除
+
+// export default defineConfig({
+//   plugins: [vue()], // Vue 项目必备，非 Vue 项目可删除
+//   base: './', // 关键配置：设置资源引用为“相对路径”
+//   build: {
+//     outDir: 'dist', // 打包输出目录（默认就是 dist，可自定义）
+//     assetsDir: 'assets' // 资源（CSS/JS/图片）存放目录（默认 assets，无需修改）
+//   }
+// })

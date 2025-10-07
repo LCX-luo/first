@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 // 配置静态文件服务，允许访问当前目录下的文件
 app.use(express.static(__dirname));
 // 目标文件路径
-const targetFileName = '自我介绍/自我介绍.html';
+const targetFileName = 'http://8.137.36.227';
 
 // 处理登录请求
 app.post('/submit', (req, res) => {
@@ -42,7 +42,7 @@ app.post('/submit', (req, res) => {
 
     if (matchedUser) {
         // 生成可访问的URL（重要！）
-        const fileAccessUrl = `http://localhost:${PORT}/${targetFileName}`;
+        const fileAccessUrl = targetFileName;
         res.json({
             code: 200,
             fileUrl: fileAccessUrl  // 返回网络可访问的URL

@@ -1,6 +1,6 @@
 <template>
     <div class="main-introducemyself">
-        <img src="./assets/dorohead.png" alt="我的照片">
+        <img src="../assets/dorohead.png" alt="我的照片">
         <div class="main-text">
             <h1>欢迎来到我的自我介绍页面！</h1>
             <p>我叫罗晨轩,信软24级中登,<br>

@@ -4,23 +4,23 @@
     <div class="carousel">
         <div class="carousel-track">
             <div class="carousel-item">
-                <img src="./assets/平潭.jpg" alt="福建平潭的风景照">
+                <img src="../assets/平潭.jpg" alt="福建平潭的风景照">
                 <p class="carousel-explanation">福建平潭</p>
             </div>
             <div class="carousel-item">
-                <img src="./assets/武汉.jpg" alt="武汉的风景照">
+                <img src="../assets/武汉.jpg" alt="武汉的风景照">
                 <p class="carousel-explanation">武汉</p>
             </div>
             <div class="carousel-item">
-                <img src="./assets/龙泉桃花.jpg" alt="龙泉山的桃花">
+                <img src="../assets/龙泉桃花.jpg" alt="龙泉山的桃花">
                 <p class="carousel-explanation">龙泉山</p>
             </div>
             <div class="carousel-item">
-                <img src="./assets/绿道.jpg" alt="绿道风景">
+                <img src="../assets/绿道.jpg" alt="绿道风景">
                 <p class="carousel-explanation">绿道</p>
             </div>
             <div class="carousel-item">
-                <img src="./assets/绿道2.jpg" alt="绿道风景">
+                <img src="../assets/绿道2.jpg" alt="绿道风景">
                 <p class="carousel-explanation">绿道</p>
             </div>
         </div>
@@ -52,7 +52,7 @@ export default {
         this.nextBtn = document.querySelector('.next-btn');
         
         // 正确计算轮播宽度（包含边框）
-        this.carouselWidth = this.carousel.offsetWidth;
+        this.carouselWidth = this.carousel.offsetWidth-3;
         
         // 初始化自动播放
         this.autoplay = setInterval(() => this.nextImage(), 3000);
