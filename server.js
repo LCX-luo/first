@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 // 配置静态文件服务，允许访问当前目录下的文件
 app.use(express.static(__dirname));
 // 目标文件路径
-const targetFileName = 'http://8.137.36.227';
+const targetFileName = 'http://8.137.36.227/home';
 
 // 处理登录请求
 app.post('/submit', (req, res) => {
@@ -60,5 +60,5 @@ app.post('/submit', (req, res) => {
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`服务器运行在 http://127.0.0.1:${PORT}`);
-    console.log(`请在浏览器中打开 http://127.0.0.1:5500 或你的HTML文件路径`);
+    console.log(`请在浏览器中打开 http://127.0.0.1:4000 或你的HTML文件路径`);
 });

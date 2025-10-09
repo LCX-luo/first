@@ -82,7 +82,7 @@
             const password = document.getElementById('password').value;
             const messageDiv = document.getElementById('message');
             const loginSection = document.getElementById('loginSection');
-
+            messageDiv.style.display = 'block';
             try {
                 const response = await axios.post('http://127.0.0.1:4000/submit', {
                     username: username,
@@ -107,9 +107,12 @@
             } catch (error) {
                 // 显示错误消息
                 const errorMessage = error.response?.data?.message || '登录失败，请重试';
-                messageDiv.textContent = errorMessage;
-                messageDiv.className = 'message error';
-
+                // messageDiv.textContent = errorMessage;
+                // messageDiv.className = 'message error';
+                // setTimeout(() => {
+                //     messageDiv.style.display = 'none';
+                // },2000);
+                alert(errorMessage);
                 // 打印错误到控制台
                 console.error('请求错误：', error);
             }
