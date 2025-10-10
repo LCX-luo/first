@@ -47,13 +47,13 @@ header {
 </style> -->
 <template>
   <!-- 按顺序引入所有现有组件 -->
-  <Header />
+  <Header/>
   <main-introducemyself />
   <skills />
   <carousel />
   <contact />
-  <movebutton />
   <message />
+  <threedcard />
 </template>
 
 <script>
@@ -64,9 +64,9 @@ import mainIntroducemyself from './components/main-introducemyself.vue'
 import skills from './components/skills.vue'
 import carousel from './components/carousel.vue'
 import contact from './components/contact.vue'
-import movebutton from './components/movebuttonbackground.vue'
+// import movebutton from './components/movebuttonbackground.vue'
 import message from './components/message.vue'
-
+import threedcard from './components/3dcard.vue'
 
 export default {
   components: {
@@ -75,9 +75,10 @@ export default {
     skills,
     carousel,
     contact,
-    movebutton,
-    message
+    // movebutton,
+    message,
     // 注册所有组件
+    threedcard
   }
 }
 </script>

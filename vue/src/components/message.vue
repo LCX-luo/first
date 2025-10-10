@@ -52,7 +52,7 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    background-color: #cedff2;
+    background-color: #ced8f2;
     border-radius: 25px;
 }
 
@@ -70,6 +70,7 @@
 .message-boardform input,
 .message-boardform textarea {
     margin-top: 10px;
+    margin-right: 10px;
     padding: 5px 10px;
     border-radius: 5px;
     border: none;
