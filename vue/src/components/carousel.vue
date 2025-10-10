@@ -257,7 +257,7 @@ export default {
         // 使用Vue的ref获取DOM元素
         this.carouselWidth = this.$refs.carousel.offsetWidth - 3;
         this.startAutoplay();
-        
+
         // 窗口大小变化监听
         window.addEventListener('resize', this.handleResize);
     },
@@ -317,7 +317,8 @@ export default {
     border: 2px solid #ccc;
     border-radius: 10px;
     position: relative;
-    box-sizing: border-box; /* 确保边框包含在宽度计算中 */
+    box-sizing: border-box;
+    /* 确保边框包含在宽度计算中 */
 }
 
 .carousel-track {
