@@ -1,21 +1,21 @@
-import { fileURLToPath, URL } from 'node:url'
+// import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+// import { defineConfig } from 'vite'
+// import vue from '@vitejs/plugin-vue'
+// import vueDevTools from 'vite-plugin-vue-devtools'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
-  },
-})
+// // https://vite.dev/config/
+// export default defineConfig({
+//   plugins: [
+//     vue(),
+//     vueDevTools(),
+//   ],
+//   resolve: {
+//     alias: {
+//       '@': fileURLToPath(new URL('./src', import.meta.url))
+//     },
+//   },
+// })
 
 
 
@@ -30,3 +30,20 @@ export default defineConfig({
 //     assetsDir: 'assets' // 资源（CSS/JS/图片）存放目录（默认 assets，无需修改）
 //   }
 // })
+// vue.config.js
+
+
+
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
+
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  // 其他配置项...
+});
