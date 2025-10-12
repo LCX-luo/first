@@ -1,32 +1,36 @@
 <template>
-  <div class="cards-container">
-    <!-- 3D旋转容器 -->
-    <div class="rotation-container" :class="{ paused: isPaused }" @mouseenter="isPaused = true"
-      @mouseleave="isPaused = false">
-      <!-- 卡片列表 -->
-      <div class="cards-wrapper" :style="{ transform: `rotateY(${rotationDeg}deg)` }">
-        <!-- 各个技术卡片 -->
-        <div class="card" v-for="(tech, index) in technologies" :key="tech.id"
-          :style="{ transform: `rotateY(${index * (360 / technologies.length)}deg) translateZ(${cardRadius}px)` }"
-          @click="showDetail(tech)">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="card-icon">{{ tech.icon }}</div>
-              <h3 class="card-title">{{ tech.name }}</h3>
-              <div class="card-overlay">点击查看详情</div>
+  <div id="skills" class="skills-section">
+    <h2 class="section-title">我的技能</h2>
+    <!-- 3D技能卡片容器 -->
+    <div class="skills-3d-container">
+      <!-- 3D旋转容器 -->
+      <div class="rotation-container" :class="{ paused: isPaused }" 
+        @mouseenter="isPaused = true" @mouseleave="isPaused = false">
+        <!-- 卡片列表 -->
+        <div class="cards-wrapper" :style="{ transform: `rotateY(${rotationDeg}deg)` }">
+          <!-- 各个技能卡片 -->
+          <div class="card" v-for="(skill, index) in skills" :key="skill.id"
+            :style="{ transform: `rotateY(${index * (360 / skills.length)}deg) translateZ(${cardRadius}px)` }"
+            @click="showDetail(skill)">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="card-icon">{{ skill.icon }}</div>
+                <h3 class="card-title">{{ skill.name }}</h3>
+                <div class="card-overlay">点击查看详情</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 详情弹窗 -->
-    <div class="modal" v-if="selectedTech" @click="closeDetail()">
-      <div class="modal-content" @click.stop>
-        <button class="close-btn" @click="closeDetail()">&times;</button>
-        <h2 class="modal-title">{{ selectedTech.name }}</h2>
-        <div class="modal-icon">{{ selectedTech.icon }}</div>
-        <p class="modal-description">{{ selectedTech.description }}</p>
+      <!-- 详情弹窗 -->
+      <div class="modal" v-if="selectedSkill" @click="closeDetail()">
+        <div class="modal-content" @click.stop>
+          <button class="close-btn" @click="closeDetail()">&times;</button>
+          <h2 class="modal-title">{{ selectedSkill.name }}</h2>
+          <div class="modal-icon">{{ selectedSkill.icon }}</div>
+          <p class="modal-description">{{ selectedSkill.description }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -36,72 +40,71 @@
 export default {
   data() {
     return {
-      // 旋转状态
+      // 旋转状态控制
       isPaused: false,
       rotationDeg: 0,
       // 卡片配置
-      cardRadius: 200,
-      rotationSpeed: 0.5,
-      // 技术卡片数据
-      technologies: [
+      cardRadius: 180,
+      rotationSpeed: 0.8,
+      // 技能数据
+      skills: [
         {
           id: 1,
           name: "C语言",
           icon: "C",
-          description: "C语言是一种通用的、面向过程式的计算机编程语言。它广泛应用于系统软件与应用软件的开发，具有高效、灵活和可移植性等特点。"
+          description: "掌握C语言基础语法与指针操作，能够编写简单的程序，理解内存管理和数据结构基础应用。"
         },
         {
           id: 2,
           name: "HTML",
           icon: "<>",
-          description: "HTML（超文本标记语言）是用于创建网页的标准标记语言。它描述了网页的结构，使用一系列标签来定义内容的不同部分。"
+          description: "熟练使用HTML5语义化标签构建网页结构，掌握表单、多媒体元素及新特性应用，能够创建简单的html页面。"
         },
         {
           id: 3,
           name: "CSS",
           icon: "CSS",
-          description: "CSS（层叠样式表）是一种用于描述HTML或XML文档呈现的样式表语言。它控制网页的布局和外观，实现内容与表现的分离。"
+          description: "精通CSS布局技巧，能够实现响应式设计，掌握动画过渡效果和变量使用。"
         },
         {
           id: 4,
           name: "JavaScript",
           icon: "JS",
-          description: "JavaScript是一种高级的、解释型的编程语言。它是网页的核心技术之一，可用于实现网页的交互效果，以及服务器端编程等。"
+          description: "掌握JavaScript核心概念，包括异步编程，能够操作DOM实现交互效果，了解ES6+新特性。"
         },
         {
           id: 5,
           name: "Vue",
           icon: "V",
-          description: "Vue是一套用于构建用户界面的渐进式JavaScript框架。它的核心库只关注视图层，易于上手，同时也能与其他库或现有项目整合。"
+          description: "熟悉Vue框架核心思想，能够使用Vue进行状态管理，掌握组件化开发和生命周期概念。"
         },
         {
           id: 6,
           name: "Linux",
           icon: "L",
-          description: "Linux是一种自由和开放源代码的类UNIX操作系统。它广泛应用于服务器、嵌入式系统和个人计算机等领域，以稳定性和安全性著称。"
+          description: "熟悉Linux常用命令，能够进行系统配置和管理，了解Shell脚本基础，能够搭建基本的开发环境。"
         }
       ],
-      // 选中的技术卡片
-      selectedTech: null
+      // 选中的技能卡片
+      selectedSkill: null
     };
   },
   methods: {
-    // 旋转动画
+    // 旋转动画控制
     rotateCards() {
       if (!this.isPaused) {
         this.rotationDeg = (this.rotationDeg + this.rotationSpeed) ;
       }
       requestAnimationFrame(this.rotateCards);
     },
-    // 显示详情
-    showDetail(tech) {
-      this.selectedTech = tech;
-      // 显示详情时暂停旋转
-      this.isPaused = true;
+    // 显示技能详情
+    showDetail(skill) {
+      this.selectedSkill = skill;
+      this.isPaused = true; // 显示详情时暂停旋转
     },
-    // 关闭详情
+    // 关闭详情弹窗
     closeDetail() {
-      this.selectedTech = null;
+      this.selectedSkill = null;
     }
   },
   mounted() {
@@ -112,16 +115,33 @@ export default {
 </script>
 
 <style scoped>
-/* 容器样式 */
-.cards-container {
-  width: 900px;
-  height: 600px;
+.skills-section {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin: 40px auto;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-dark);
+}
+
+/* 3D卡片容器适配原技能组件布局 */
+.skills-3d-container {
+  width: 100%;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--bg-light);
   perspective: 1000px;
-  overflow: hidden;
+  border-radius: 8px;
+  padding: 20px 0;
 }
 
 /* 旋转容器 */
@@ -147,8 +167,8 @@ export default {
   top: 50%;
   left: 50%;
   width: 200px;
-  height: 280px;
-  margin: -140px 0 0 -100px;
+  height: 260px;
+  margin: -130px 0 0 -100px;
   transform-style: preserve-3d;
   cursor: pointer;
   transition: var(--transition);
@@ -191,10 +211,10 @@ export default {
 
 /* 卡片图标 */
 .card-icon {
-  font-size: 50px;
+  font-size: 48px;
   font-weight: bold;
   color: var(--primary-color);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   transition: var(--transition);
 }
 
@@ -205,9 +225,9 @@ export default {
 
 /* 卡片标题 */
 .card-title {
-  font-size: 24px;
+  font-size: 22px;
   color: var(--text-dark);
-  margin: 0 0 15px 0;
+  margin: 0 0 10px 0;
   text-align: center;
 }
 
@@ -290,13 +310,8 @@ export default {
 
 /* 动画效果 */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes scaleIn {
@@ -304,7 +319,6 @@ export default {
     transform: scale(0.8);
     opacity: 0;
   }
-
   to {
     transform: scale(1);
     opacity: 1;
@@ -313,20 +327,22 @@ export default {
 
 /* 响应式调整 */
 @media (max-width: 768px) {
+  .skills-3d-container {
+    height: 400px;
+  }
+  
   .card {
-    width: 160px;
-    height: 220px;
-    margin: -110px 0 0 -80px;
+    width: 150px;
+    height: 200px;
+    margin: -100px 0 0 -75px;
   }
 
   .card-title {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .card-icon {
     font-size: 40px;
   }
-
-
 }
 </style>

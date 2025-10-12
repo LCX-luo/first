@@ -23,21 +23,13 @@
                         <p style="text-align:center">还没有留言，快来抢沙发吧！</p>
                     </template>
                     <template v-else>
-                        <div 
-                            v-for="(msg, index) in reversedMessages" 
-                            :key="index"
-                            class="message-item"
-                        >
+                        <div v-for="(msg, index) in reversedMessages" :key="index" class="message-item">
                             <strong>{{ msg.name }}</strong> <small>{{ formatTime(msg.timestamp) }}</small>
                             <p>{{ msg.content }}</p>
                         </div>
                     </template>
                 </div>
-                <button 
-                    id="clearAllMessages" 
-                    @click="clearAllMessages"
-                    v-if="messages.length > 0"
-                >
+                <button id="clearAllMessages" @click="clearAllMessages" v-if="messages.length > 0">
                     清空所有留言
                 </button>
             </div>
@@ -138,7 +130,7 @@ export default {
     },
     methods: {
         handleSubmit() {
-            // 创建留言对象
+            // 创建留言对象 
             const newMessage = {
                 name: this.name,
                 content: this.message,
