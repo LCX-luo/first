@@ -45,7 +45,7 @@ export default {
       rotationDeg: 0,
       // 卡片配置
       cardRadius: 180,
-      rotationSpeed: 0.8,
+      rotationSpeed: 1,
       // 技能数据
       skills: [
         {
@@ -121,7 +121,7 @@ export default {
   border-radius: 12px;
   box-shadow: var(--shadow);
   margin: 40px auto;
-  max-width: 1000px;
+  max-width: 600px;
   overflow: hidden;
 }
 
@@ -139,20 +139,19 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: var(--bg-light);
-  perspective: 1000px;
+  perspective: 1500px;
   border-radius: 8px;
   padding: 20px 0;
 }
 
-/* 旋转容器 */
-.rotation-container {
+
+/* .rotation-container {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
 }
 
-/* 卡片 wrapper */
 .cards-wrapper {
   position: absolute;
   width: 100%;
@@ -161,14 +160,47 @@ export default {
   transition: transform 0.5s ease;
 }
 
-/* 单个卡片样式 */
+
 .card {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 260px;
+  width: 140px;
+  height: 200px;
   margin: -130px 0 0 -100px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: var(--transition);
+} */
+/* 旋转容器 - 增加固定尺寸和中心点定位 */
+.rotation-container {
+  position: relative;
+  width: 100px; /* 固定一个小尺寸作为旋转中心 */
+  height: 100px;
+  transform-style: preserve-3d;
+  margin: 0 auto; /* 居中显示 */
+}
+
+/* 卡片 wrapper - 设置变换原点为容器中心 */
+.cards-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+  transform-origin: 50% 50%; /* 明确以容器中心为变换原点 */
+}
+
+/* 单个卡片样式 - 调整定位基准 */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 200px;
+  /* 调整偏移量，使卡片围绕容器中心旋转 */
+  transform-origin: 50% 50%;
+  margin: -100px 0 0 -70px; /* 基于卡片自身尺寸的一半偏移 */
   transform-style: preserve-3d;
   cursor: pointer;
   transition: var(--transition);
