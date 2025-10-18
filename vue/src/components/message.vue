@@ -10,7 +10,7 @@
                     <br>
                     <label for="message">留言:</label>
                     <br>
-                    <textarea id="message" v-model="message" rows="4" cols="40" required></textarea>
+                    <textarea id="message" v-model="message" rows="4" cols="40" ></textarea>
                     <br>
                     <button type="submit">提交</button>
                     <button type="reset">重置</button>
@@ -42,7 +42,7 @@
     width: auto;
     height: auto;
     margin: auto;
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
     background-color: #ced8f2;
     border-radius: 25px;
@@ -50,12 +50,15 @@
 
 .message-boardform {
     height: 200px;
-    margin: 50px;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: row;
     border-radius: 25px;
     padding: 20px;
     background-color: #e0e7ff;
+    align-items: center;
 }
 
 .message-boardform button,
